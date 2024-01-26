@@ -10,19 +10,18 @@ config_version=5
 
 [application]
 
-<<<<<<< HEAD
 run/main_scene="res://scenes/Player/Player.tscn"
 config/features=PackedStringArray("4.2", "C#")
-=======
-run/main_scene="res://scenes/World.tscn"
-config/features=PackedStringArray("4.2")
->>>>>>> a8fab0d97a92abf9c15fc58cbd741febed9929a5
+<<<<<<<HEADrun/main_scene="res://scenes/Player/Player.tscn"
 
 [dotnet]
 
 project/assembly_name="UnnamedProject"
 
-<<<<<<< HEAD
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
+
 [input]
 
 up={
@@ -50,8 +49,3 @@ exit={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
-=======
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
->>>>>>> a8fab0d97a92abf9c15fc58cbd741febed9929a5

@@ -28,7 +28,7 @@ public partial class Player : CharacterBody3D
         {
             camera.RotateX(Mathf.DegToRad(mouseMotion.Relative.Y*mouseSens*-1));
             camera.RotationDegrees = new Vector3(Mathf.Clamp(camera.RotationDegrees.X, -75.0f, 75.0f), 0.0f, 0.0f);
-            this.RotateY(Mathf.DegToRad(mouseMotion.Relative.X*mouseSens*-1)); 
+            this.RotateY(Mathf.DegToRad(mouseMotion.Relative.X*mouseSens*-1));
         }
     }
 
@@ -58,6 +58,7 @@ public partial class Player : CharacterBody3D
             moveVector += -camera.GlobalTransform.Basis.X;
         if(Input.IsActionPressed("right"))
             moveVector += camera.GlobalTransform.Basis.X;
+        moveVector.Y = 0.0f;
         this.Velocity = moveVector.Normalized() * speed;
 
         //quit state
