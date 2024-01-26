@@ -22,6 +22,7 @@ public partial class Player : CharacterBody3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
+<<<<<<< HEAD
 	public override void _Input(InputEvent @event)
 	{
 		if(@event is InputEventMouseMotion mouseMotion)
@@ -31,6 +32,17 @@ public partial class Player : CharacterBody3D
 			this.RotateY(Mathf.DegToRad(mouseMotion.Relative.X*mouseSens*-1)); 
 		}
 	}
+=======
+    public override void _Input(InputEvent @event)
+    {
+        if(@event is InputEventMouseMotion mouseMotion)
+        {
+            camera.RotateX(Mathf.DegToRad(mouseMotion.Relative.Y*mouseSens*-1));
+            camera.RotationDegrees = new Vector3(Mathf.Clamp(camera.RotationDegrees.X, -75.0f, 75.0f), 0.0f, 0.0f);
+            this.RotateY(Mathf.DegToRad(mouseMotion.Relative.X*mouseSens*-1));
+        }
+    }
+>>>>>>> 319ace88d9bf21cd7c617d55a1210f7425ed4672
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -47,6 +59,7 @@ public partial class Player : CharacterBody3D
 		}
 	}
 
+<<<<<<< HEAD
 	public void walkState(double delta)
 	{
 		moveVector = new Godot.Vector3(0.0f, 0.0f, 0.0f);
@@ -59,6 +72,21 @@ public partial class Player : CharacterBody3D
 		if(Input.IsActionPressed("right"))
 			moveVector += camera.GlobalTransform.Basis.X;
 		this.Velocity = moveVector.Normalized() * speed;
+=======
+    public void walkState(double delta)
+    {
+        moveVector = new Godot.Vector3(0.0f, 0.0f, 0.0f);
+        if(Input.IsActionPressed("up"))
+            moveVector += -camera.GlobalTransform.Basis.Z;
+        if(Input.IsActionPressed("down"))
+            moveVector += camera.GlobalTransform.Basis.Z;
+        if(Input.IsActionPressed("left"))
+            moveVector += -camera.GlobalTransform.Basis.X;
+        if(Input.IsActionPressed("right"))
+            moveVector += camera.GlobalTransform.Basis.X;
+        moveVector.Y = 0.0f;
+        this.Velocity = moveVector.Normalized() * speed;
+>>>>>>> 319ace88d9bf21cd7c617d55a1210f7425ed4672
 
 		//quit state
 		if(Input.IsActionJustPressed("exit"))

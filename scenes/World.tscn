@@ -1,10 +1,48 @@
+<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://1xmcoi1r05rp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xcgx5"]
+=======
+[gd_scene load_steps=8 format=3 uid="uid://b3v1hpjg01jew"]
+
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_wcnqa"]
+[ext_resource type="Resource" path="res://assets/terrain/data.hterrain" id="2_68m72"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_lxns0"]
+[ext_resource type="Texture2D" uid="uid://bkc1xhg8jnh0w" path="res://assets/World_slot0_albedo_bump.png" id="4_n8ltk"]
+[ext_resource type="Texture2D" uid="uid://bb7lrb3eqxrsw" path="res://assets/World_slot0_normal_roughness.png" id="5_r8l36"]
+[ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="6_ch7cr"]
+>>>>>>> 319ace88d9bf21cd7c617d55a1210f7425ed4672
 
 [node name="World" type="Node3D"]
 
+<<<<<<< HEAD
 [node name="Fish" type="RigidBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Fish"]
 shape = SubResource("CapsuleShape3D_xcgx5")
+=======
+[node name="HTerrain" type="Node3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+script = ExtResource("1_wcnqa")
+map_scale = Vector3(0.05, 0.1, 0.05)
+_terrain_data = ExtResource("2_68m72")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_l3pod")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+
+[node name="Player" parent="." instance=ExtResource("6_ch7cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2658, 2.92945, 9.83418)
+speed = 5.0
+mouseSens = 0.05
+>>>>>>> 319ace88d9bf21cd7c617d55a1210f7425ed4672

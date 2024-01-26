@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvgy0makobk2t"]
+
+[ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
+[ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rn2mp"]
+sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
+sky_horizon_color = Color(1, 0.47451, 0.368627, 1)
+sun_angle_max = 180.0
+sun_curve = 0.172305
+
+[sub_resource type="Sky" id="Sky_0r6g8"]
+sky_material = SubResource("ProceduralSkyMaterial_rn2mp")
+
+[sub_resource type="Environment" id="Environment_m7f0s"]
+background_mode = 2
+sky = SubResource("Sky_0r6g8")
+ambient_light_color = Color(0.811765, 0.435294, 0.184314, 1)
+ambient_light_energy = 1.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sny0m"]
+render_priority = 0
+shader = ExtResource("1_o0v2t")
+shader_parameter/WATER_COL = Color(0.592157, 0.509804, 0.988235, 1)
+shader_parameter/WATER2_COL = Color(0.447059, 0.313726, 0.537255, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(15, 15)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1e2to"]
+material = SubResource("ShaderMaterial_sny0m")
+size = Vector2(100, 100)
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_577qd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985143, 0)
+speed = 5.0
+mouseSens = 0.05
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m7f0s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.477693, 3.64965, 0)
+light_color = Color(1, 0.0588235, 1, 1)
+light_energy = 1.53
+omni_range = 38.5443
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1e2to")
