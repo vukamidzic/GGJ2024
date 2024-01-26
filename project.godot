@@ -10,8 +10,13 @@ config_version=5
 
 [application]
 
+run/main_scene="res://scenes/World.tscn"
 config/features=PackedStringArray("4.2")
 
 [dotnet]
 
 project/assembly_name="UnnamedProject"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
