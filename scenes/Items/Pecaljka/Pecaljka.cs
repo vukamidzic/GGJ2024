@@ -48,11 +48,11 @@ public partial class Pecaljka : Item
         }
         else if(state == STATE.FREE)
         {
+            player.raycast.ForceRaycastUpdate();
             if(player.raycast.IsColliding())
             {  
                 state = STATE.CAPTURED;
                 player.state = Player.STATE.FISH;
-                player.raycast.ForceRaycastUpdate();
                 mamac.GlobalPosition = new Vector3(player.raycast.GetCollisionPoint().X, 1.0f, player.raycast.GetCollisionPoint().Z);
             }
         }
@@ -62,12 +62,18 @@ public partial class Pecaljka : Item
     {
         GD.Print("uslo");
         if(body.GetType() == typeof(StandardFish))
+        {
             standardFish = (StandardFish)body;
+            standardFish.lightOn();
+        }
     }
 
     public void _on_area_3d_body_exited(CharacterBody3D body)
     {
         if(body.GetType() == typeof(StandardFish))
+        {
+            standardFish.lightOff();
             standardFish = null;
+        }
     }
 }

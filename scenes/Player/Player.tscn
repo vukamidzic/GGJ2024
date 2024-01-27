@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgtlhc7u4ls4n"]
+[gd_scene load_steps=6 format=3 uid="uid://cgtlhc7u4ls4n"]
 
 [ext_resource type="Script" path="res://scenes/Player/Player.cs" id="1_l8ryn"]
 [ext_resource type="PackedScene" uid="uid://b67h2xowwonxk" path="res://scenes/Items/Gun/Gun.tscn" id="2_virjg"]
 [ext_resource type="PackedScene" uid="uid://dtyoxohsaysdv" path="res://scenes/Items/Pecaljka/Pecaljka.tscn" id="3_kawia"]
+[ext_resource type="PackedScene" uid="uid://djdmj2ka06gn3" path="res://scenes/Items/Grenade/Grenade.tscn" id="4_0kudw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n3gyp"]
 
@@ -24,8 +25,11 @@ visible = false
 [node name="Pecaljka" parent="Camera3D" instance=ExtResource("3_kawia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
 
+[node name="Grenade" parent="Camera3D" instance=ExtResource("4_0kudw")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, -2)
+
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.564189)
 target_position = Vector3(0, 0, -10)
 collision_mask = 3
 debug_shape_custom_color = Color(1, 0, 0, 1)
@@ -46,4 +50,5 @@ size = Vector2i(600, 400)
 render_target_update_mode = 4
 
 [node name="ViewmodelCamera" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cull_mask = 2

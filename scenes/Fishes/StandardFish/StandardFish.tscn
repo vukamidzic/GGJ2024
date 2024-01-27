@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/Fishes/StandardFish/StandardFish.cs" id="1_dbd1x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4824"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5opl7"]
 
@@ -10,7 +11,14 @@
 script = ExtResource("1_dbd1x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_s4824")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5opl7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+omni_range = 1.905
