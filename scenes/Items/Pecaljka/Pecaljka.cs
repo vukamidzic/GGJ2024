@@ -44,7 +44,10 @@ public partial class Pecaljka : Item
             else
                 minus = -1;
             if(standardFish != null)
+            {
+                player.animPlayer.Play("score");
                 standardFish.destroy();
+            }
             if(goldenFish != null)
                 goldenFish.destroy(player);
             state = STATE.FREE;
@@ -80,15 +83,15 @@ public partial class Pecaljka : Item
 
     public void _on_area_3d_body_exited(CharacterBody3D body)
     {
-        if(body.GetType() == typeof(StandardFish))
+        if(body.GetType() == typeof(StandardFish) && (standardFish != null))
         {
             standardFish.lightOff();
             standardFish = null;
         }
-        else if(body.GetType() == typeof(GoldenFish))
+        else if(body.GetType() == typeof(GoldenFish) && (goldenFish != null))
         {
-            goldenFish = (GoldenFish)body;
-            goldenFish.lightOn();
+            goldenFish.lightOff();
+            goldenFish = null;
         }
     }
 }

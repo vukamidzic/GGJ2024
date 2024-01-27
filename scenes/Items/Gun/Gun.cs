@@ -54,6 +54,7 @@ public partial class Gun : Item
         { 
             if(player.raycast.GetCollider().GetType() == typeof(StandardFish))
             {
+                player.animPlayer.Play("score");
                 standardFish = (StandardFish)player.raycast.GetCollider();
                 standardFish.destroy();
             }

@@ -51,12 +51,14 @@ public partial class Grenade : Item
         if(body.GetType() == typeof(StandardFish))
         {
             StandardFish standardFish = (StandardFish)body;
+            playerInstance.animPlayer.Play("score");
             standardFish.destroy();
         }
         if(body.GetType() == typeof(GoldenFish))
         {
             goldenFish = (GoldenFish)body;
             goldenFish.destroy(playerInstance);
+            damageArea.Monitoring = false;
         }
     }
 

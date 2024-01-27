@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgtlhc7u4ls4n"]
+[gd_scene load_steps=8 format=3 uid="uid://cgtlhc7u4ls4n"]
 
 [ext_resource type="Script" path="res://scenes/Player/Player.cs" id="1_l8ryn"]
 [ext_resource type="PackedScene" uid="uid://b67h2xowwonxk" path="res://scenes/Items/Gun/Gun.tscn" id="2_virjg"]
@@ -6,6 +6,27 @@
 [ext_resource type="PackedScene" uid="uid://djdmj2ka06gn3" path="res://scenes/Items/Grenade/Grenade.tscn" id="4_0kudw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n3gyp"]
+
+[sub_resource type="Animation" id="Animation_1e1dc"]
+resource_name = "score"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nhoy0"]
+_data = {
+"score": SubResource("Animation_1e1dc")
+}
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 3
@@ -31,7 +52,7 @@ visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.564189)
-target_position = Vector3(0, 0, -10)
+target_position = Vector3(0, 0, -20)
 collision_mask = 3
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
@@ -53,3 +74,19 @@ render_target_update_mode = 4
 [node name="ViewmodelCamera" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cull_mask = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.211765)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nhoy0")
+}

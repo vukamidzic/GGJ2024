@@ -6,13 +6,13 @@ public partial class Kutija : Area3D
     AnimationPlayer animPlayer;
     public override void _Ready()
     {
-        animPlayer = GetNode<Node3D>("toolbox").GetNode<AnimationPlayer>("AnimationPlayer2");
+        animPlayer = GetNode<Node3D>("KutijaModel").GetNode<AnimationPlayer>("AnimationPlayer");
     }
     public void open(Player player)
     {
         GD.Print("otvaranje");
         player.levelUp();
-        animPlayer.Play("kutijaAnimations/opening");
+        animPlayer.Play("noveanimacije/opening");
     }
 
     public void _on_body_entered(Node3D body)
