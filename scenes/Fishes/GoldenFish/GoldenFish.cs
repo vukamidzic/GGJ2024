@@ -7,6 +7,7 @@ public partial class GoldenFish : CharacterBody3D
     float speed;
     OmniLight3D light;
     Vector3 moveVector;
+    public FishSpawner spawn;
     public override void _Ready()
     {
         light = GetNode<OmniLight3D>("OmniLight3D");
@@ -32,6 +33,7 @@ public partial class GoldenFish : CharacterBody3D
     public void destroy(Player player)
     {
         player.fail();
+        QueueFree();
     }
 
 }

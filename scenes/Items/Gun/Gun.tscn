@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b67h2xowwonxk"]
+[gd_scene load_steps=12 format=3 uid="uid://b67h2xowwonxk"]
 
 [ext_resource type="Script" path="res://scenes/Items/Gun/Gun.cs" id="1_da6bu"]
 [ext_resource type="PackedScene" uid="uid://dmrmuhyd0vjoj" path="res://models/Gun/Gun.tscn" id="1_igm7q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qxkoh4cfdv1p" path="res://models/Gun/muzzle_05.png" id="3_f166h"]
 [ext_resource type="AudioStream" uid="uid://b2bc1rh2yji6s" path="res://assets/Music/gun-shot-6178.mp3" id="5_lia1b"]
 [ext_resource type="PackedScene" uid="uid://s1xy0gspb8ts" path="res://scenes/Items/Gun/GunDecal.tscn" id="6_oo6hm"]
+[ext_resource type="AudioStream" uid="uid://c5cpoegqce6y0" path="res://assets/Music/metal-pipe-falling-sound-effect-made-with-Voicemod.mp3" id="7_c0ew2"]
 
 [sub_resource type="Animation" id="Animation_4ajvk"]
 resource_name = "shoot"
@@ -54,7 +55,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_wlxti"]
 resource_name = "golden"
-length = 0.6
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -62,10 +63,22 @@ tracks/0/path = NodePath("Gun:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.523599, 3.14159, 0), Vector3(3.14159, 3.14159, 0), Vector3(0.523599, 3.14159, 0)]
+"values": [Vector3(0.523599, 3.14159, 0), Vector3(3.14159, 3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hg68d"]
@@ -83,7 +96,6 @@ transform = Transform3D(-1, 1.26759e-06, 2.19553e-06, 0, 0.866025, -0.5, -2.5351
 
 [node name="BulletMuzzle" type="Sprite3D" parent="Gun"]
 transform = Transform3D(9.55343e-16, 2.18557e-08, 0.5, 0.433013, 0.25, -1.09278e-08, -0.25, 0.433013, -1.89276e-08, 0.909143, 4.20769, 3.28793)
-visible = false
 layers = 2
 texture = ExtResource("3_f166h")
 
@@ -102,9 +114,11 @@ transform = Transform3D(1, 0, 1.13687e-13, 0, 1, 0, -1.13687e-13, 0, 1, 0, -0.05
 
 [node name="BulletTrail" type="Sprite3D" parent="Tracer"]
 transform = Transform3D(-6.78399e-07, 0, 2, 0, 2, 0, -15.52, 0, -8.74228e-08, 0, 0, -50)
-visible = false
 layers = 2
 texture = ExtResource("2_8638m")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_lia1b")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_c0ew2")

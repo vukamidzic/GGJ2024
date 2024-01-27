@@ -8,6 +8,7 @@ public partial class StandardFish : CharacterBody3D
     OmniLight3D light;
     Vector3 moveVector;
     AnimationPlayer meshFish;
+    public FishSpawner spawn;
     public override void _Ready()
     {
         light = GetNode<OmniLight3D>("OmniLight3D");
@@ -35,6 +36,8 @@ public partial class StandardFish : CharacterBody3D
     }
     public void destroy()
     {
+        spawn.enemyCounter++;
+        spawn.score++;
         QueueFree();
     }
 }

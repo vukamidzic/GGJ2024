@@ -85,6 +85,7 @@ enemyCounter = 5
 [node name="FishSpawner2" parent="." instance=ExtResource("8_ilcsv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5207, 0, -8)
 enemyCounter = 5
+haveGold = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a7kfr")
