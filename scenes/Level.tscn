@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
-[ext_resource type="PackedScene" uid="uid://b8vgrxc4juimf" path="res://scenes/Fishes/StandardFish/StandardFish.tscn" id="3_vh0j7"]
 [ext_resource type="PackedScene" uid="uid://bdeow1atdakia" path="res://scenes/Brodic/Brodic.tscn" id="4_6sfvn"]
 [ext_resource type="PackedScene" uid="uid://dj6ytgsax6hed" path="res://scenes/Kutija/Kutija.tscn" id="5_7dfy2"]
-[ext_resource type="PackedScene" uid="uid://brwr1875svqx8" path="res://scenes/Fishes/GoldenFish/GoldenFish.tscn" id="6_r8pvq"]
+[ext_resource type="PackedScene" uid="uid://ccxyql8xgdp3u" path="res://scenes/Items/Canon/Canon.tscn" id="7_yndac"]
+[ext_resource type="PackedScene" uid="uid://65mtaa0mn6ap" path="res://scenes/FishSpawner/FishSpawner.tscn" id="8_ilcsv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rn2mp"]
 sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
@@ -62,13 +62,25 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
 shape = SubResource("BoxShape3D_ces08")
 
-[node name="StandardFish" parent="." instance=ExtResource("3_vh0j7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
-
 [node name="Brodic" parent="." instance=ExtResource("4_6sfvn")]
 
 [node name="Kutija" parent="." instance=ExtResource("5_7dfy2")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0.43, -3.31008)
+transform = Transform3D(2.38498e-08, 0, -2, 0, 2, 0, 2, 0, 2.38498e-08, 0, 0.43, -3.31008)
 
-[node name="GoldenFish" parent="." instance=ExtResource("6_r8pvq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 1)
+[node name="Canon" parent="." instance=ExtResource("7_yndac")]
+transform = Transform3D(0.0374178, 0, 1.99965, 0, 2, 0, -1.99965, 0, 0.0374178, 0.361317, 0, 0)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
+use_collision = true
+flip_faces = true
+size = Vector3(50, 50, 50)
+
+[node name="FishSpawner" parent="." instance=ExtResource("8_ilcsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 10)
+enemyCounter = 5
+
+[node name="FishSpawner2" parent="." instance=ExtResource("8_ilcsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5207, 0, 18)
+enemyCounter = 5

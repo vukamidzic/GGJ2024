@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://65mtaa0mn6ap"]
+
+[ext_resource type="Script" path="res://scenes/FishSpawner/FishSpawner.cs" id="1_yngiy"]
+[ext_resource type="PackedScene" uid="uid://b8vgrxc4juimf" path="res://scenes/Fishes/StandardFish/StandardFish.tscn" id="2_bmmru"]
+[ext_resource type="PackedScene" uid="uid://brwr1875svqx8" path="res://scenes/Fishes/GoldenFish/GoldenFish.tscn" id="3_puagb"]
+
+[node name="FishSpawner" type="Node3D"]
+script = ExtResource("1_yngiy")
+enemyCounter = 10
+fishScene = ExtResource("2_bmmru")
+goldenFishScene = ExtResource("3_puagb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

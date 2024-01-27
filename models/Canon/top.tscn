@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://1bladyjnxumc"]
+
+[ext_resource type="PackedScene" uid="uid://ckv8hkxvf0ly2" path="res://models/Canon/top.glb" id="1_t2qrp"]
+
+[node name="top" instance=ExtResource("1_t2qrp")]

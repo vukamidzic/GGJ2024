@@ -20,11 +20,14 @@ public partial class Player : CharacterBody3D
     public Gun gun;
 	public Pecaljka pecaljka;
 	public Grenade grenade;
+	public Canon canon;
 	public Item item;
 	public bool canOpen;
 	public bool canShoot;
 	public int levelCounter;
 	public Node3D usableObject;
+	public ColorRect colorRect;
+	public AnimationPlayer animPlayer;
 	Item[] items;
 	public override void _Ready()
 	{
@@ -34,13 +37,17 @@ public partial class Player : CharacterBody3D
         pecaljka = camera.GetNode<Pecaljka>("Pecaljka");
 		gun = camera.GetNode<Gun>("Gun");
 		grenade = camera.GetNode<Grenade>("Grenade");
+		canon = GetParent().GetNode<Canon>("Canon");
 		raycast = camera.GetNode<RayCast3D>("RayCast3D");
+		colorRect = GetNode<CanvasLayer>("CanvasLayer").GetNode<ColorRect>("ColorRect");
+		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		colorRect.Visible = false;
 		item = pecaljka;
 		canOpen = false;
 		canShoot = true;
 		levelCounter = 0;
-		items = new Item[3]{pecaljka, gun, grenade};
+		items = new Item[4]{pecaljka, gun, grenade, canon};
 	}
 
     public override void _Input(InputEvent @event)
@@ -121,7 +128,14 @@ public partial class Player : CharacterBody3D
 
 	public void fail()
 	{
-		pecaljka.animPlayer.Play("golden");
+		if(item.GetType() == typeof(Pecaljka)) pecaljka.animPlayer.Play("golden");
+		if(item.GetType() == typeof(Gun)) gun.animPlayer2.Play("golden");
+		if(item.GetType() == typeof(Grenade)) 
+		{
+			grenade.animPlayer.Stop();
+			grenade.animPlayer.Play("golden");
+		}
+		if(item.GetType() == typeof(Canon)) canon.animPlayer.Play("golden");
 		canShoot = false;
 	}
 

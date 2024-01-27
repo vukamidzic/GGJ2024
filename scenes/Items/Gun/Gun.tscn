@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b67h2xowwonxk"]
+[gd_scene load_steps=9 format=3 uid="uid://b67h2xowwonxk"]
 
 [ext_resource type="Script" path="res://scenes/Items/Gun/Gun.cs" id="1_da6bu"]
 [ext_resource type="PackedScene" uid="uid://dmrmuhyd0vjoj" path="res://models/Gun/Gun.tscn" id="1_igm7q"]
@@ -50,6 +50,27 @@ _data = {
 "shoot": SubResource("Animation_4ajvk")
 }
 
+[sub_resource type="Animation" id="Animation_wlxti"]
+resource_name = "golden"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.523599, 3.14159, 0), Vector3(3.14159, 3.14159, 0), Vector3(0.523599, 3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hg68d"]
+_data = {
+"golden": SubResource("Animation_wlxti")
+}
+
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_da6bu")
 swayThreshold = 0.5
@@ -66,6 +87,11 @@ texture = ExtResource("3_f166h")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_u8skp")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hg68d")
 }
 
 [node name="Tracer" type="Node3D" parent="."]

@@ -12,12 +12,14 @@ public partial class Pecaljka : Item
     StandardFish standardFish;
     GoldenFish goldenFish;
     public AnimationPlayer animPlayer;
+    public AnimationPlayer meshAnimPlayer;
     int minus;
     public override void _Ready()
     {
         state = STATE.FREE;
         mamac = GetNode<Area3D>("Mamac");
         animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        meshAnimPlayer = GetNode<Node3D>("pecac_anim").GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     public override void _Input(InputEvent @event)
@@ -44,7 +46,10 @@ public partial class Pecaljka : Item
             else
                 minus = -1;
             if(standardFish != null)
+            {
+                player.animPlayer.Play("score");
                 standardFish.destroy();
+            }
             if(goldenFish != null)
                 goldenFish.destroy(player);
             state = STATE.FREE;
@@ -60,6 +65,7 @@ public partial class Pecaljka : Item
                 player.state = Player.STATE.FISH;
                 mamac.GlobalPosition = new Vector3(player.raycast.GetCollisionPoint().X, 1.0f, player.raycast.GetCollisionPoint().Z);
             }
+            meshAnimPlayer.Play("pecanje");
         }
     }
 
@@ -80,15 +86,15 @@ public partial class Pecaljka : Item
 
     public void _on_area_3d_body_exited(CharacterBody3D body)
     {
-        if(body.GetType() == typeof(StandardFish))
+        if(body.GetType() == typeof(StandardFish) && (standardFish != null))
         {
             standardFish.lightOff();
             standardFish = null;
         }
-        else if(body.GetType() == typeof(GoldenFish))
+        else if(body.GetType() == typeof(GoldenFish) && (goldenFish != null))
         {
-            goldenFish = (GoldenFish)body;
-            goldenFish.lightOn();
+            goldenFish.lightOff();
+            goldenFish = null;
         }
     }
 }
