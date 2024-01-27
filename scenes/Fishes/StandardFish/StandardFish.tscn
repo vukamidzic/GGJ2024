@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rwi2fxnbsl4r" path="res://models/Fish/riba_anim.tscn" id="2_5k38p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4824"]
-size = Vector3(2, 2, 2)
+size = Vector3(4, 2, 4)
 
 [node name="StandardFish" type="CharacterBody3D"]
 script = ExtResource("1_dbd1x")

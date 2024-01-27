@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkdlic88jmnhq"]
+
+[ext_resource type="PackedScene" uid="uid://rfsw58p8kqn4" path="res://models/Hand/samoRuka.glb" id="1_e2rxj"]
+
+[node name="samoRuka" instance=ExtResource("1_e2rxj")]

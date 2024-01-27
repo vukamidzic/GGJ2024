@@ -41,8 +41,6 @@ public partial class Grenade : Item
             viewmodelMesh.Visible = false;
             grenadeMesh.Visible = true;
             playerInstance = player;
-            if(!animPlayer.IsPlaying())
-                animPlayer.Play("explosion");
         }
     }
 
@@ -50,15 +48,17 @@ public partial class Grenade : Item
     {
         if(body.GetType() == typeof(StandardFish))
         {
+            if(!animPlayer.IsPlaying())
+                animPlayer.Play("explosion");
             StandardFish standardFish = (StandardFish)body;
             playerInstance.animPlayer.Play("score");
+            playerInstance.audioStream2.Play();
             standardFish.destroy();
         }
         if(body.GetType() == typeof(GoldenFish))
         {
             goldenFish = (GoldenFish)body;
             goldenFish.destroy(playerInstance);
-            damageArea.Monitoring = false;
         }
     }
 

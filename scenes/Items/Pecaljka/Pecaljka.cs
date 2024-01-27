@@ -13,6 +13,7 @@ public partial class Pecaljka : Item
     GoldenFish goldenFish;
     public AnimationPlayer animPlayer;
     public AnimationPlayer meshAnimPlayer;
+    AudioStreamPlayer audioStream;
     int minus;
     public override void _Ready()
     {
@@ -20,6 +21,7 @@ public partial class Pecaljka : Item
         mamac = GetNode<Area3D>("Mamac");
         animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         meshAnimPlayer = GetNode<Node3D>("pecac_anim").GetNode<AnimationPlayer>("AnimationPlayer");
+        audioStream = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
     }
 
     public override void _Input(InputEvent @event)
@@ -48,6 +50,7 @@ public partial class Pecaljka : Item
             if(standardFish != null)
             {
                 player.animPlayer.Play("score");
+                player.audioStream2.Play();
                 standardFish.destroy();
             }
             if(goldenFish != null)
@@ -58,6 +61,7 @@ public partial class Pecaljka : Item
         }
         else if(state == STATE.FREE)
         {
+            audioStream.Play();
             player.raycast.ForceRaycastUpdate();
             if(player.raycast.IsColliding())
             {  

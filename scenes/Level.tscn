@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvgy0makobk2t"]
+[gd_scene load_steps=14 format=3 uid="uid://dvgy0makobk2t"]
 
 [ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
 [ext_resource type="PackedScene" uid="uid://bdeow1atdakia" path="res://scenes/Brodic/Brodic.tscn" id="4_6sfvn"]
 [ext_resource type="PackedScene" uid="uid://dj6ytgsax6hed" path="res://scenes/Kutija/Kutija.tscn" id="5_7dfy2"]
+[ext_resource type="AudioStream" uid="uid://cy0fnv0apvcdv" path="res://assets/Music/ocean-sea-soft-waves-121349.mp3" id="7_a7kfr"]
 [ext_resource type="PackedScene" uid="uid://ccxyql8xgdp3u" path="res://scenes/Items/Canon/Canon.tscn" id="7_yndac"]
 [ext_resource type="PackedScene" uid="uid://65mtaa0mn6ap" path="res://scenes/FishSpawner/FishSpawner.tscn" id="8_ilcsv"]
 
@@ -13,16 +14,16 @@ sky_horizon_color = Color(1, 0.47451, 0.368627, 1)
 sun_angle_max = 180.0
 sun_curve = 0.172305
 
-[sub_resource type="Sky" id="Sky_0r6g8"]
+[sub_resource type="Sky" id="Sky_7rjwr"]
 sky_material = SubResource("ProceduralSkyMaterial_rn2mp")
 
 [sub_resource type="Environment" id="Environment_m7f0s"]
 background_mode = 2
-sky = SubResource("Sky_0r6g8")
+sky = SubResource("Sky_7rjwr")
 ambient_light_color = Color(0.811765, 0.435294, 0.184314, 1)
 ambient_light_energy = 1.55
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sny0m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwom4"]
 render_priority = 0
 shader = ExtResource("1_o0v2t")
 shader_parameter/WATER_COL = Color(0.592157, 0.509804, 0.988235, 1)
@@ -33,7 +34,7 @@ shader_parameter/tile = Vector2(25, 25)
 shader_parameter/wave_speed = 1.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1e2to"]
-material = SubResource("ShaderMaterial_sny0m")
+material = SubResource("ShaderMaterial_hwom4")
 size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ces08"]
@@ -75,12 +76,16 @@ visible = false
 visible = false
 use_collision = true
 flip_faces = true
-size = Vector3(50, 50, 50)
+size = Vector3(70, 70, 70)
 
 [node name="FishSpawner" parent="." instance=ExtResource("8_ilcsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 4)
 enemyCounter = 5
 
 [node name="FishSpawner2" parent="." instance=ExtResource("8_ilcsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5207, 0, 18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5207, 0, -8)
 enemyCounter = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_a7kfr")
+autoplay = true

@@ -21,6 +21,7 @@ public partial class Player : CharacterBody3D
 	public Pecaljka pecaljka;
 	public Grenade grenade;
 	public Canon canon;
+	public Mines mines;
 	public Item item;
 	public bool canOpen;
 	public bool canShoot;
@@ -28,6 +29,8 @@ public partial class Player : CharacterBody3D
 	public Node3D usableObject;
 	public ColorRect colorRect;
 	public AnimationPlayer animPlayer;
+	AudioStreamPlayer audioStream;
+	public AudioStreamPlayer audioStream2;
 	Item[] items;
 	public override void _Ready()
 	{
@@ -38,16 +41,19 @@ public partial class Player : CharacterBody3D
 		gun = camera.GetNode<Gun>("Gun");
 		grenade = camera.GetNode<Grenade>("Grenade");
 		canon = GetParent().GetNode<Canon>("Canon");
+		mines = camera.GetNode<Mines>("Mines");
 		raycast = camera.GetNode<RayCast3D>("RayCast3D");
 		colorRect = GetNode<CanvasLayer>("CanvasLayer").GetNode<ColorRect>("ColorRect");
 		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		audioStream = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audioStream2 = GetNode<AudioStreamPlayer>("AudioStreamPlayer2");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		colorRect.Visible = false;
-		item = pecaljka;
 		canOpen = false;
 		canShoot = true;
 		levelCounter = 0;
-		items = new Item[4]{pecaljka, gun, grenade, canon};
+		items = new Item[4]{pecaljka, gun, mines, canon};
+		item = items[0];
 	}
 
     public override void _Input(InputEvent @event)
@@ -100,6 +106,10 @@ public partial class Player : CharacterBody3D
         moveVector.Y = 0.0f;
         this.Velocity = moveVector.Normalized() * speed;
 
+		if(moveVector != new Vector3(0.0f, 0.0f, 0.0f) && !audioStream.Playing)
+			audioStream.Play();
+		else if(moveVector == new Vector3(0.0f, 0.0f, 0.0f) && audioStream.Playing)
+			audioStream.Stop();
 		//quit state
 		if(Input.IsActionJustPressed("exit"))
 			state = STATE.QUIT;
@@ -130,11 +140,7 @@ public partial class Player : CharacterBody3D
 	{
 		if(item.GetType() == typeof(Pecaljka)) pecaljka.animPlayer.Play("golden");
 		if(item.GetType() == typeof(Gun)) gun.animPlayer2.Play("golden");
-		if(item.GetType() == typeof(Grenade)) 
-		{
-			grenade.animPlayer.Stop();
-			grenade.animPlayer.Play("golden");
-		}
+		if(item.GetType() == typeof(Mines)) mines.animPlayer.Play("golden");
 		if(item.GetType() == typeof(Canon)) canon.animPlayer.Play("golden");
 		canShoot = false;
 	}
