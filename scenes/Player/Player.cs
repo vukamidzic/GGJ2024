@@ -22,6 +22,7 @@ public partial class Player : CharacterBody3D
 	public Grenade grenade;
 	public Item item;
 	public bool canOpen;
+	public bool canShoot;
 	public int levelCounter;
 	public Node3D usableObject;
 	Item[] items;
@@ -37,6 +38,7 @@ public partial class Player : CharacterBody3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		item = pecaljka;
 		canOpen = false;
+		canShoot = true;
 		levelCounter = 0;
 		items = new Item[3]{pecaljka, gun, grenade};
 	}
@@ -100,7 +102,7 @@ public partial class Player : CharacterBody3D
 
     public void shootState(double delta)
     {
-        if(Input.IsActionJustPressed("accept"))
+        if(Input.IsActionJustPressed("accept") && canShoot)
             item.shoot(this);
     }
 
@@ -117,11 +119,18 @@ public partial class Player : CharacterBody3D
 			GetTree().Quit();
 	}
 
+	public void fail()
+	{
+		pecaljka.animPlayer.Play("golden");
+		canShoot = false;
+	}
+
 	public void levelUp()
 	{
 		levelCounter++;
 		item.Visible = false;
 		item = items[levelCounter];
 		item.Visible = true;
+		canShoot = true;
 	}
 }

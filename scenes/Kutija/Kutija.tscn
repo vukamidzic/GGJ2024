@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj6ytgsax6hed"]
 
 [ext_resource type="Script" path="res://scenes/Kutija/Kutija.cs" id="1_1r7cx"]
-[ext_resource type="PackedScene" uid="uid://bh0yoqt2wyfl3" path="res://models/Kutija/toolbox_closing.glb" id="1_g6unx"]
+[ext_resource type="PackedScene" uid="uid://bh0yoqt2wyfl3" path="res://models/Kutija/toolbox.tscn" id="2_8jyqs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kdcfy"]
 size = Vector3(2.69531, 1, 1.67084)
@@ -9,7 +9,7 @@ size = Vector3(2.69531, 1, 1.67084)
 [node name="Kutija" type="Area3D"]
 script = ExtResource("1_1r7cx")
 
-[node name="toolbox" parent="." instance=ExtResource("1_g6unx")]
+[node name="toolbox" parent="." instance=ExtResource("2_8jyqs")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
