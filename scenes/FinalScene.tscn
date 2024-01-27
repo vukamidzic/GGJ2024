@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd8m6mdf2syeh"]
+[gd_scene load_steps=15 format=3 uid="uid://cd8m6mdf2syeh"]
 
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_48kwm"]
+[ext_resource type="Script" path="res://scenes/FinalScene.cs" id="1_v5wxq"]
 [ext_resource type="AudioStream" uid="uid://cy0fnv0apvcdv" path="res://assets/Music/ocean-sea-soft-waves-121349.mp3" id="2_cntn0"]
 [ext_resource type="PackedScene" uid="uid://bkdlic88jmnhq" path="res://models/Hand/samo_ruka.tscn" id="3_ps00a"]
+[ext_resource type="PackedScene" uid="uid://rwi2fxnbsl4r" path="res://models/Fish/riba_anim.tscn" id="4_0ff2c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_38qik"]
 sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
@@ -36,7 +38,93 @@ size = Vector2(200, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8w48e"]
 size = Vector3(50, 1, 50)
 
+[sub_resource type="Animation" id="Animation_0f6d7"]
+resource_name = "finalScene"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1, 27.8, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 26.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.065, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/RichTextLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 21.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["", "Finally caught me, after all atempts, ready to fulfill my wishes. But so much time passed that you even forgot what you wanted to wish from me. Now the only need you have is to catch me again. So you will take me back to the water, so our relationship can continue indefinitely. "]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(22.1, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["", "GOLDEN CATCH"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 22.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_7fhss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kjgco"]
+_data = {
+"RESET": SubResource("Animation_7fhss"),
+"finalScene": SubResource("Animation_0f6d7")
+}
+
 [node name="FinalScene" type="Node3D"]
+script = ExtResource("1_v5wxq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6jkgu")
@@ -60,4 +148,41 @@ autoplay = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="samoRuka" parent="Camera3D" instance=ExtResource("3_ps00a")]
-transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 0, -0.204506, 0.0760207)
+transform = Transform3D(-8.74228e-09, -0.185437, -0.0749213, 0, 0.0749213, -0.185437, 0.2, -8.1057e-09, -3.27492e-09, -0.095, -0.315, 0.126)
+
+[node name="riba_anim" parent="Camera3D" instance=ExtResource("4_0ff2c")]
+transform = Transform3D(-0.0877115, -0.0100124, -0.286717, 0, 0.299817, -0.0104698, 0.286891, -0.00306109, -0.0876581, -0.155, -0.175, -0.53)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kjgco")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2

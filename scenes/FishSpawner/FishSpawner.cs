@@ -9,11 +9,14 @@ public partial class FishSpawner : Node3D
     PackedScene fishScene;
     [Export]
     PackedScene goldenFishScene;
+    [Export]
+    bool haveGold;
     StandardFish standardFish;
     GoldenFish goldenFish;
     Timer timer;
     float offset = 1.0f;
     float position = -8.0f;
+    public int score = 0;
 
     public override void _Ready()
     {
@@ -35,16 +38,20 @@ public partial class FishSpawner : Node3D
         // standardFish.GlobalPosition += new Vector3(position, 0.0f, 0.0f);
         // if(timer.WaitTime>2.0f)
         //     timer.WaitTime -= 0.5f;
-        enemyCounter--;
         if(enemyCounter > 0)
         {
             AddChild(standardFish);
-            timer.Start();
+            enemyCounter--;
+            standardFish.spawn = this;
         }
-        else
+
+        if(score >= 3)
         {
             AddChild(goldenFish);
-            enemyCounter = 5;
+            score = 0;
+            goldenFish.spawn = this;
         }
+
+        timer.Start();
     }
 }

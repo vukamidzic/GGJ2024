@@ -49,7 +49,6 @@ public partial class Canon : Item
         if(animName == "shooting")
             damageArea.Monitoring = false;
         if(animName == "golden")
-        {}
-            // GetTree().ChangeSceneToFile();
+            GetTree().ChangeSceneToFile("res://scenes/FinalScene.tscn");
     }
 }
