@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://crnhwoi7ueu1h" path="res://models/Gun/Gun.glb" id="1_ijeuh"]
 
 [node name="Gun" instance=ExtResource("1_ijeuh")]
+
+[node name="Cube" parent="." index="1"]
+layers = 2

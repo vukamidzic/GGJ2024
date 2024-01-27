@@ -55,7 +55,7 @@ script = ExtResource("1_da6bu")
 swayThreshold = 0.5
 
 [node name="Gun" parent="." instance=ExtResource("1_igm7q")]
-transform = Transform3D(-1, -4.37114e-08, -7.57103e-08, 0, 0.866025, -0.5, 8.74228e-08, -0.5, -0.866025, 0.952536, -2.01972, 0.0914021)
+transform = Transform3D(-1, 1.26759e-06, 2.19553e-06, 0, 0.866025, -0.5, -2.53518e-06, -0.5, -0.866025, 0.952536, -2.01972, 0.0914021)
 
 [node name="BulletMuzzle" type="Sprite3D" parent="Gun"]
 transform = Transform3D(9.55343e-16, 2.18557e-08, 0.5, 0.433013, 0.25, -1.09278e-08, -0.25, 0.433013, -1.89276e-08, 0.909143, 4.20769, 3.28793)
