@@ -62,12 +62,18 @@ public partial class Pecaljka : Item
     {
         GD.Print("uslo");
         if(body.GetType() == typeof(StandardFish))
+        {
             standardFish = (StandardFish)body;
+            standardFish.lightOn();
+        }
     }
 
     public void _on_area_3d_body_exited(CharacterBody3D body)
     {
         if(body.GetType() == typeof(StandardFish))
+        {
+            standardFish.lightOff();
             standardFish = null;
+        }
     }
 }

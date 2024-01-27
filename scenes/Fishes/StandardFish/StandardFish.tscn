@@ -14,3 +14,9 @@ shape = SubResource("BoxShape3D_s4824")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5opl7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+omni_range = 1.905
