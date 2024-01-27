@@ -10,6 +10,7 @@ public partial class Pecaljka : Item
     STATE state;
     Area3D mamac;
     StandardFish standardFish;
+    int minus;
     public override void _Ready()
     {
         state = STATE.FREE;
@@ -29,12 +30,16 @@ public partial class Pecaljka : Item
 
     public void moveMamac(float mouseMoveX, float mouseMoveY)
     {
-        mamac.GlobalPosition += new Vector3(-mouseMoveY*0.05f, 0.0f, mouseMoveX*0.05f);
+        mamac.GlobalPosition += new Vector3(-minus*mouseMoveY*0.05f, 0.0f, minus*mouseMoveX*0.05f);
     }
     public override void shoot(Player player)
     {
         if(state == STATE.CAPTURED)
         {
+            if((mamac.GlobalPosition.Z - player.GlobalPosition.Z) > 0)
+                minus = 1;
+            else
+                minus = -1;
             if(standardFish != null)
                 standardFish.destroy();
             state = STATE.FREE;
