@@ -15,6 +15,7 @@ shape = SubResource("CapsuleShape3D_n3gyp")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10867, 0)
+cull_mask = 1048573
 
 [node name="Gun" parent="Camera3D" instance=ExtResource("2_virjg")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.6, -0.985, -1.495)
@@ -28,3 +29,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 target_position = Vector3(0, 0, -10)
 collision_mask = 3
 debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918722
+size = Vector2i(600, 400)
+render_target_update_mode = 4
+
+[node name="ViewmodelCamera" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
+cull_mask = 2

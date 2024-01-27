@@ -14,6 +14,7 @@ script = ExtResource("1_tsirx")
 
 [node name="Pecaljka" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.330666, 0, 0, 0, 7.14574, 0, 0, 0, 0.238027, 0, 0, 0)
+layers = 2
 mesh = SubResource("BoxMesh_5rdrv")
 
 [node name="Mamac" type="Area3D" parent="."]

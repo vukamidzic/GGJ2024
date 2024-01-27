@@ -15,6 +15,7 @@ public partial class Player : CharacterBody3D
 	public STATE state;
 	Godot.Vector3 moveVector;
 	Camera3D camera;
+	Camera3D viewmodelCamera;
 	public RayCast3D raycast;
     public Gun gun;
 	public Pecaljka pecaljka;
@@ -27,6 +28,7 @@ public partial class Player : CharacterBody3D
 	{
 		state = STATE.WALK;
 		camera = GetNode<Camera3D>("Camera3D");
+		viewmodelCamera = camera.GetNode<SubViewportContainer>("SubViewportContainer").GetNode<SubViewport>("SubViewport").GetNode<Camera3D>("ViewmodelCamera");
         pecaljka = camera.GetNode<Pecaljka>("Pecaljka");
 		gun = camera.GetNode<Gun>("Gun");
 		raycast = camera.GetNode<RayCast3D>("RayCast3D");
@@ -49,6 +51,7 @@ public partial class Player : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		viewmodelCamera.GlobalTransform = camera.GlobalTransform;
 		switch(state)
 		{
 			case STATE.WALK:
