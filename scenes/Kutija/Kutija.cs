@@ -4,14 +4,17 @@ using System;
 public partial class Kutija : Area3D
 {
     AnimationPlayer animPlayer;
+    AudioStreamPlayer audioPlayer;
     public override void _Ready()
     {
         animPlayer = GetNode<Node3D>("KutijaModel").GetNode<AnimationPlayer>("AnimationPlayer");
+        audioPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
     }
     public void open(Player player)
     {
         GD.Print("otvaranje");
         player.levelUp();
+        audioPlayer.Play();
         animPlayer.Play("noveanimacije/opening");
     }
 

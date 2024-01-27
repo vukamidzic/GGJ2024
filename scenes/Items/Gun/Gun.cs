@@ -12,6 +12,9 @@ public partial class Gun : Item
     GoldenFish goldenFish;
     Node3D tracer;
     AudioStreamPlayer audioStream;
+    [Export]
+    PackedScene bulletDecalScene;
+    GunDecal bulletDecal;
 
     public override void _Ready()
     {
@@ -49,8 +52,12 @@ public partial class Gun : Item
 
     public override void shoot(Player player)
     {
+        bulletDecal = (GunDecal)bulletDecalScene.Instantiate();
+        GetParent().GetParent().GetParent().GetParent().AddChild(bulletDecal);
         audioStream.Play();
         player.raycast.ForceRaycastUpdate();
+        bulletDecal.GlobalPosition = player.raycast.GetCollisionPoint();
+        bulletDecal.LookAt(player.Position);
         // GD.Print(player.raycast.GetCollisionPoint());
         // tracer.LookAt(player.raycast.GetCollisionPoint(), Vector3.Forward);
         if(player.raycast.IsColliding())

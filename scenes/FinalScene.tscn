@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://cd8m6mdf2syeh"]
+
+[ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_48kwm"]
+[ext_resource type="AudioStream" uid="uid://cy0fnv0apvcdv" path="res://assets/Music/ocean-sea-soft-waves-121349.mp3" id="2_cntn0"]
+[ext_resource type="PackedScene" uid="uid://bkdlic88jmnhq" path="res://models/Hand/samo_ruka.tscn" id="3_ps00a"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_38qik"]
+sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
+sky_horizon_color = Color(1, 0.47451, 0.368627, 1)
+sun_angle_max = 180.0
+sun_curve = 0.172305
+
+[sub_resource type="Sky" id="Sky_0r6g8"]
+sky_material = SubResource("ProceduralSkyMaterial_38qik")
+
+[sub_resource type="Environment" id="Environment_6jkgu"]
+background_mode = 2
+sky = SubResource("Sky_0r6g8")
+ambient_light_color = Color(0.811765, 0.435294, 0.184314, 1)
+ambient_light_energy = 1.55
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sny0m"]
+render_priority = 0
+shader = ExtResource("1_48kwm")
+shader_parameter/WATER_COL = Color(0.592157, 0.509804, 0.988235, 1)
+shader_parameter/WATER2_COL = Color(0.447059, 0.313726, 0.537255, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(25, 25)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_77gvb"]
+material = SubResource("ShaderMaterial_sny0m")
+size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8w48e"]
+size = Vector3(50, 1, 50)
+
+[node name="FinalScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6jkgu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_77gvb")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+shape = SubResource("BoxShape3D_8w48e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cntn0")
+autoplay = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="samoRuka" parent="Camera3D" instance=ExtResource("3_ps00a")]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 0, -0.204506, 0.0760207)

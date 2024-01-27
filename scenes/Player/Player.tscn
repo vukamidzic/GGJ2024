@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgtlhc7u4ls4n"]
+[gd_scene load_steps=11 format=3 uid="uid://cgtlhc7u4ls4n"]
 
 [ext_resource type="Script" path="res://scenes/Player/Player.cs" id="1_l8ryn"]
+[ext_resource type="PackedScene" uid="uid://cbo2b6bud8ben" path="res://scenes/Items/Mines/Mines.tscn" id="2_02mib"]
 [ext_resource type="PackedScene" uid="uid://b67h2xowwonxk" path="res://scenes/Items/Gun/Gun.tscn" id="2_virjg"]
 [ext_resource type="PackedScene" uid="uid://dtyoxohsaysdv" path="res://scenes/Items/Pecaljka/Pecaljka.tscn" id="3_kawia"]
 [ext_resource type="PackedScene" uid="uid://djdmj2ka06gn3" path="res://scenes/Items/Grenade/Grenade.tscn" id="4_0kudw"]
@@ -40,6 +41,10 @@ shape = SubResource("CapsuleShape3D_n3gyp")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10867, 0)
 cull_mask = 1048573
+
+[node name="Mines" parent="Camera3D" instance=ExtResource("2_02mib")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.789135, 0, -2)
+visible = false
 
 [node name="Gun" parent="Camera3D" instance=ExtResource("2_virjg")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.6, -0.985, -1.495)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://s1xy0gspb8ts"]
+
+[ext_resource type="Script" path="res://scenes/Items/Gun/GunDecal.cs" id="1_0y7o1"]
+[ext_resource type="Texture2D" uid="uid://qxkoh4cfdv1p" path="res://models/Gun/muzzle_05.png" id="1_1bu4c"]
+
+[sub_resource type="Animation" id="Animation_gswvi"]
+resource_name = "bulletDecal"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_v6j0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aux64"]
+_data = {
+"RESET": SubResource("Animation_v6j0k"),
+"bulletDecal": SubResource("Animation_gswvi")
+}
+
+[node name="GunDecal" type="Node3D"]
+script = ExtResource("1_0y7o1")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.959813, 0)
+texture = ExtResource("1_1bu4c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aux64")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

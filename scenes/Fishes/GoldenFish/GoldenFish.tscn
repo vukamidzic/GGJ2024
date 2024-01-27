@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://brwr1875svqx8"]
+[gd_scene load_steps=6 format=3 uid="uid://brwr1875svqx8"]
 
 [ext_resource type="Script" path="res://scenes/Fishes/GoldenFish/GoldenFish.cs" id="1_ov6fl"]
 [ext_resource type="PackedScene" uid="uid://rwi2fxnbsl4r" path="res://models/Fish/riba_anim.tscn" id="2_ywddt"]
+[ext_resource type="AudioStream" uid="uid://2626tvq5rtr2" path="res://assets/Music/car-about-to-pass-by-aggressive-103226.mp3" id="3_eh8hj"]
+[ext_resource type="AudioStream" uid="uid://dlhtr7gj8nw77" path="res://assets/Music/fun-disco-1-108497.mp3" id="4_tnux1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gmadg"]
-size = Vector3(2, 2, 2)
+size = Vector3(6, 2, 6)
 
 [node name="GoldenFish" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_ov6fl")
-speed = 6.0
+speed = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -22,3 +24,18 @@ light_energy = 16.0
 omni_range = 1.905
 
 [node name="riba_anim" parent="." instance=ExtResource("2_ywddt")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_eh8hj")
+volume_db = 7.701
+unit_size = 15.0
+max_db = 5.567
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_tnux1")
+volume_db = -6.979
+max_db = 1.0
+pitch_scale = 1.05
+autoplay = true
+bus = &"velikoSranje"
