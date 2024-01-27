@@ -1,11 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtyoxohsaysdv"]
 
 [ext_resource type="Script" path="res://scenes/Items/Pecaljka/Pecaljka.cs" id="1_tsirx"]
+[ext_resource type="PackedScene" uid="uid://fnb884bt3jr7" path="res://models/Udica/udica.tscn" id="2_17vwi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5rdrv"]
 size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_cf18t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwwrr"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -19,14 +18,12 @@ mesh = SubResource("BoxMesh_5rdrv")
 
 [node name="Mamac" type="Area3D" parent="."]
 
-[node name="Mamac" type="MeshInstance3D" parent="Mamac"]
-transform = Transform3D(0.357957, 0, 0, 0, 0.444817, 0, 0, 0, 0.362313, 0, 0, -1)
-mesh = SubResource("BoxMesh_cf18t")
-skeleton = NodePath("../..")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mamac"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.973268)
 shape = SubResource("BoxShape3D_rwwrr")
+
+[node name="udica" parent="Mamac" instance=ExtResource("2_17vwi")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.218414, -0.962677)
 
 [connection signal="body_entered" from="Mamac" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Mamac" to="." method="_on_area_3d_body_exited"]

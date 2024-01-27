@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh0yoqt2wyfl3"]
+
+[ext_resource type="PackedScene" uid="uid://bfbmpax30h4ye" path="res://models/Kutija/toolbox.glb" id="1_ye21w"]
+[ext_resource type="Animation" uid="uid://b0761euwvj18v" path="res://models/Kutija/opening.res" id="2_dn7nt"]
+[ext_resource type="Animation" uid="uid://bl1v8jyyrv5nn" path="res://models/Kutija/closing.res" id="3_hjv7g"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rw2kh"]
+_data = {
+"closing": ExtResource("3_hjv7g"),
+"opening": ExtResource("2_dn7nt")
+}
+
+[node name="toolbox" instance=ExtResource("1_ye21w")]
+
+[node name="Skeleton3D" parent="Root/Main" index="0"]
+bones/0/rotation = Quaternion(0.0439164, -0.0241285, 0.706618, 0.705818)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"kutijaAnimations": SubResource("AnimationLibrary_rw2kh")
+}

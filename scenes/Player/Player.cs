@@ -16,17 +16,25 @@ public partial class Player : CharacterBody3D
 	Godot.Vector3 moveVector;
 	Camera3D camera;
 	public RayCast3D raycast;
-    Gun gun;
-	Pecaljka pecaljka;
-	Item item;
+    public Gun gun;
+	public Pecaljka pecaljka;
+	public Item item;
+	public bool canOpen;
+	public int levelCounter;
+	public Node3D usableObject;
+	Item[] items;
 	public override void _Ready()
 	{
 		state = STATE.WALK;
 		camera = GetNode<Camera3D>("Camera3D");
         pecaljka = camera.GetNode<Pecaljka>("Pecaljka");
+		gun = camera.GetNode<Gun>("Gun");
 		raycast = camera.GetNode<RayCast3D>("RayCast3D");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		item = pecaljka;
+		canOpen = false;
+		levelCounter = 0;
+		items = new Item[2]{pecaljka, gun};
 	}
 
     public override void _Input(InputEvent @event)
@@ -46,6 +54,7 @@ public partial class Player : CharacterBody3D
 			case STATE.WALK:
 				walkState(delta);
                 shootState(delta);
+				useState();
 				break;
 			case STATE.FISH:
 				fishState(delta);
@@ -90,10 +99,24 @@ public partial class Player : CharacterBody3D
             item.shoot(this);
     }
 
+	public void useState()
+	{
+		if(canOpen && Input.IsActionJustPressed("use") && usableObject != null)
+			((Kutija)usableObject).open(this);
+	}
+
 	public void quitState()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Visible;
 		if(Input.IsActionJustPressed("exit"))
 			GetTree().Quit();
+	}
+
+	public void levelUp()
+	{
+		levelCounter++;
+		item.Visible = false;
+		item = items[levelCounter];
+		item.Visible = true;
 	}
 }

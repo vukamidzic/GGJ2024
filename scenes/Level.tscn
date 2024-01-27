@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvgy0makobk2t"]
+[gd_scene load_steps=12 format=3 uid="uid://dvgy0makobk2t"]
 
 [ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
 [ext_resource type="PackedScene" uid="uid://b8vgrxc4juimf" path="res://scenes/Fishes/StandardFish/StandardFish.tscn" id="3_vh0j7"]
 [ext_resource type="PackedScene" uid="uid://bdeow1atdakia" path="res://scenes/Brodic/Brodic.tscn" id="4_6sfvn"]
+[ext_resource type="PackedScene" uid="uid://dj6ytgsax6hed" path="res://scenes/Kutija/Kutija.tscn" id="5_7dfy2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rn2mp"]
 sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
@@ -27,12 +28,12 @@ shader_parameter/WATER_COL = Color(0.592157, 0.509804, 0.988235, 1)
 shader_parameter/WATER2_COL = Color(0.447059, 0.313726, 0.537255, 1)
 shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
 shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(15, 15)
+shader_parameter/tile = Vector2(25, 25)
 shader_parameter/wave_speed = 1.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1e2to"]
 material = SubResource("ShaderMaterial_sny0m")
-size = Vector2(100, 100)
+size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ces08"]
 size = Vector3(50, 1, 50)
@@ -67,6 +68,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
 shape = SubResource("BoxShape3D_ces08")
 
 [node name="StandardFish" parent="." instance=ExtResource("3_vh0j7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
 
 [node name="Brodic" parent="." instance=ExtResource("4_6sfvn")]
+
+[node name="Kutija" parent="." instance=ExtResource("5_7dfy2")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0.43, -3.31008)
