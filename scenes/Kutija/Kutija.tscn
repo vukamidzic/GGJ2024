@@ -17,3 +17,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.746094, 0.307393, -0.032806
 shape = SubResource("BoxShape3D_kdcfy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
