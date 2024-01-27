@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvgy0makobk2t"]
+[gd_scene load_steps=14 format=3 uid="uid://dvgy0makobk2t"]
 
 [ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
 [ext_resource type="PackedScene" uid="uid://bdeow1atdakia" path="res://scenes/Brodic/Brodic.tscn" id="4_6sfvn"]
 [ext_resource type="PackedScene" uid="uid://dj6ytgsax6hed" path="res://scenes/Kutija/Kutija.tscn" id="5_7dfy2"]
+[ext_resource type="AudioStream" uid="uid://cy0fnv0apvcdv" path="res://assets/Music/ocean-sea-soft-waves-121349.mp3" id="7_a7kfr"]
 [ext_resource type="PackedScene" uid="uid://ccxyql8xgdp3u" path="res://scenes/Items/Canon/Canon.tscn" id="7_yndac"]
 [ext_resource type="PackedScene" uid="uid://65mtaa0mn6ap" path="res://scenes/FishSpawner/FishSpawner.tscn" id="8_ilcsv"]
 
@@ -75,7 +76,7 @@ visible = false
 visible = false
 use_collision = true
 flip_faces = true
-size = Vector3(50, 50, 50)
+size = Vector3(70, 70, 70)
 
 [node name="FishSpawner" parent="." instance=ExtResource("8_ilcsv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 10)
@@ -84,3 +85,7 @@ enemyCounter = 5
 [node name="FishSpawner2" parent="." instance=ExtResource("8_ilcsv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5207, 0, 18)
 enemyCounter = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_a7kfr")
+autoplay = true

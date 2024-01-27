@@ -28,6 +28,8 @@ public partial class Player : CharacterBody3D
 	public Node3D usableObject;
 	public ColorRect colorRect;
 	public AnimationPlayer animPlayer;
+	AudioStreamPlayer audioStream;
+	public AudioStreamPlayer audioStream2;
 	Item[] items;
 	public override void _Ready()
 	{
@@ -41,6 +43,8 @@ public partial class Player : CharacterBody3D
 		raycast = camera.GetNode<RayCast3D>("RayCast3D");
 		colorRect = GetNode<CanvasLayer>("CanvasLayer").GetNode<ColorRect>("ColorRect");
 		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		audioStream = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audioStream2 = GetNode<AudioStreamPlayer>("AudioStreamPlayer2");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		colorRect.Visible = false;
 		item = pecaljka;
@@ -100,6 +104,10 @@ public partial class Player : CharacterBody3D
         moveVector.Y = 0.0f;
         this.Velocity = moveVector.Normalized() * speed;
 
+		if(moveVector != new Vector3(0.0f, 0.0f, 0.0f) && !audioStream.Playing)
+			audioStream.Play();
+		else if(moveVector == new Vector3(0.0f, 0.0f, 0.0f) && audioStream.Playing)
+			audioStream.Stop();
 		//quit state
 		if(Input.IsActionJustPressed("exit"))
 			state = STATE.QUIT;

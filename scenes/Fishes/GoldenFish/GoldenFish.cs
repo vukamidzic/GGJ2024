@@ -10,7 +10,7 @@ public partial class GoldenFish : CharacterBody3D
     public override void _Ready()
     {
         light = GetNode<OmniLight3D>("OmniLight3D");
-        light.LightEnergy = 0.0f;
+        light.LightEnergy = 5.0f;
         moveVector = new Vector3(0.0f, 0.0f, 1.0f);
     }
     public override void _PhysicsProcess(double delta)
@@ -27,7 +27,7 @@ public partial class GoldenFish : CharacterBody3D
     }
     public void lightOff()
     {
-        light.LightEnergy = 0.0f;
+        light.LightEnergy = 5.0f;
     }
     public void destroy(Player player)
     {

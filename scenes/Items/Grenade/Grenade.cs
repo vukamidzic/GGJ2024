@@ -52,6 +52,7 @@ public partial class Grenade : Item
         {
             StandardFish standardFish = (StandardFish)body;
             playerInstance.animPlayer.Play("score");
+            playerInstance.audioStream2.Play();
             standardFish.destroy();
         }
         if(body.GetType() == typeof(GoldenFish))

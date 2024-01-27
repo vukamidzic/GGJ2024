@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b67h2xowwonxk"]
+[gd_scene load_steps=10 format=3 uid="uid://b67h2xowwonxk"]
 
 [ext_resource type="Script" path="res://scenes/Items/Gun/Gun.cs" id="1_da6bu"]
 [ext_resource type="PackedScene" uid="uid://dmrmuhyd0vjoj" path="res://models/Gun/Gun.tscn" id="1_igm7q"]
 [ext_resource type="Texture2D" uid="uid://5suna60ii4e2" path="res://models/Gun/pngegg(1).png" id="2_8638m"]
 [ext_resource type="Texture2D" uid="uid://qxkoh4cfdv1p" path="res://models/Gun/muzzle_05.png" id="3_f166h"]
+[ext_resource type="AudioStream" uid="uid://b2bc1rh2yji6s" path="res://assets/Music/gun-shot-6178.mp3" id="5_lia1b"]
 
 [sub_resource type="Animation" id="Animation_4ajvk"]
 resource_name = "shoot"
@@ -102,3 +103,6 @@ transform = Transform3D(-6.78399e-07, 0, 2, 0, 2, 0, -15.52, 0, -8.74228e-08, 0,
 visible = false
 layers = 2
 texture = ExtResource("2_8638m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lia1b")

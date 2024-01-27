@@ -11,12 +11,14 @@ public partial class Gun : Item
     StandardFish standardFish;
     GoldenFish goldenFish;
     Node3D tracer;
+    AudioStreamPlayer audioStream;
 
     public override void _Ready()
     {
         tracer = GetNode<Node3D>("Tracer");
         animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         animPlayer2 = GetNode<AnimationPlayer>("AnimationPlayer2");
+        audioStream = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
     }
 
     public override void _Input(InputEvent @event)
@@ -47,6 +49,7 @@ public partial class Gun : Item
 
     public override void shoot(Player player)
     {
+        audioStream.Play();
         player.raycast.ForceRaycastUpdate();
         // GD.Print(player.raycast.GetCollisionPoint());
         // tracer.LookAt(player.raycast.GetCollisionPoint(), Vector3.Forward);
@@ -55,6 +58,7 @@ public partial class Gun : Item
             if(player.raycast.GetCollider().GetType() == typeof(StandardFish))
             {
                 player.animPlayer.Play("score");
+                player.audioStream2.Play();
                 standardFish = (StandardFish)player.raycast.GetCollider();
                 standardFish.destroy();
             }
