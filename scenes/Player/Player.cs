@@ -3,7 +3,7 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-	enum STATE {
+	public enum STATE {
 		WALK,
 		FISH,
 		QUIT
@@ -12,37 +12,32 @@ public partial class Player : CharacterBody3D
 	public float speed;
 	[Export]
 	public float mouseSens;
-	STATE state;
+	public STATE state;
 	Godot.Vector3 moveVector;
 	Camera3D camera;
+	public RayCast3D raycast;
+    Gun gun;
+	Pecaljka pecaljka;
+	Item item;
 	public override void _Ready()
 	{
 		state = STATE.WALK;
 		camera = GetNode<Camera3D>("Camera3D");
+        pecaljka = camera.GetNode<Pecaljka>("Pecaljka");
+		raycast = camera.GetNode<RayCast3D>("RayCast3D");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		item = pecaljka;
 	}
 
-<<<<<<< HEAD
-	public override void _Input(InputEvent @event)
-	{
-		if(@event is InputEventMouseMotion mouseMotion)
-		{
-			camera.RotateX(Mathf.DegToRad(mouseMotion.Relative.Y*mouseSens*-1));
-			camera.RotationDegrees = new Vector3(Mathf.Clamp(camera.RotationDegrees.X, -75.0f, 75.0f), 0.0f, 0.0f);
-			this.RotateY(Mathf.DegToRad(mouseMotion.Relative.X*mouseSens*-1)); 
-		}
-	}
-=======
     public override void _Input(InputEvent @event)
     {
-        if(@event is InputEventMouseMotion mouseMotion)
+        if(@event is InputEventMouseMotion mouseMotion && state != STATE.FISH)
         {
             camera.RotateX(Mathf.DegToRad(mouseMotion.Relative.Y*mouseSens*-1));
             camera.RotationDegrees = new Vector3(Mathf.Clamp(camera.RotationDegrees.X, -75.0f, 75.0f), 0.0f, 0.0f);
             this.RotateY(Mathf.DegToRad(mouseMotion.Relative.X*mouseSens*-1));
         }
     }
->>>>>>> 319ace88d9bf21cd7c617d55a1210f7425ed4672
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -50,8 +45,11 @@ public partial class Player : CharacterBody3D
 		{
 			case STATE.WALK:
 				walkState(delta);
+                shootState(delta);
 				break;
 			case STATE.FISH:
+				fishState(delta);
+				shootState(delta);
 				break;
 			case STATE.QUIT:
 				quitState();
@@ -59,20 +57,12 @@ public partial class Player : CharacterBody3D
 		}
 	}
 
-<<<<<<< HEAD
-	public void walkState(double delta)
+	public void fishState(double delta)
 	{
-		moveVector = new Godot.Vector3(0.0f, 0.0f, 0.0f);
-		if(Input.IsActionPressed("up"))
-			moveVector += -camera.GlobalTransform.Basis.Z;
-		if(Input.IsActionPressed("down"))
-			moveVector += camera.GlobalTransform.Basis.Z;
-		if(Input.IsActionPressed("left"))
-			moveVector += -camera.GlobalTransform.Basis.X;
-		if(Input.IsActionPressed("right"))
-			moveVector += camera.GlobalTransform.Basis.X;
-		this.Velocity = moveVector.Normalized() * speed;
-=======
+		if(Input.IsActionJustPressed("exit"))
+			state = STATE.QUIT;
+	}
+
     public void walkState(double delta)
     {
         moveVector = new Godot.Vector3(0.0f, 0.0f, 0.0f);
@@ -86,7 +76,6 @@ public partial class Player : CharacterBody3D
             moveVector += camera.GlobalTransform.Basis.X;
         moveVector.Y = 0.0f;
         this.Velocity = moveVector.Normalized() * speed;
->>>>>>> 319ace88d9bf21cd7c617d55a1210f7425ed4672
 
 		//quit state
 		if(Input.IsActionJustPressed("exit"))
@@ -94,6 +83,12 @@ public partial class Player : CharacterBody3D
 
 		MoveAndSlide();
 	}
+
+    public void shootState(double delta)
+    {
+        if(Input.IsActionJustPressed("accept"))
+            item.shoot(this);
+    }
 
 	public void quitState()
 	{
