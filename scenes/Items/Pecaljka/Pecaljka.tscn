@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtyoxohsaysdv"]
+[gd_scene load_steps=7 format=3 uid="uid://dtyoxohsaysdv"]
 
 [ext_resource type="Script" path="res://scenes/Items/Pecaljka/Pecaljka.cs" id="1_tsirx"]
 [ext_resource type="PackedScene" uid="uid://fnb884bt3jr7" path="res://models/Udica/udica.tscn" id="2_17vwi"]
@@ -8,6 +8,51 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwwrr"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_2p34x"]
+resource_name = "golden"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pecaljka:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1, -2), Vector3(1, -2, -4), Vector3(1, -6, -7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pecaljka:layers")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pecaljka:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8gf36"]
+_data = {
+"golden": SubResource("Animation_2p34x")
+}
 
 [node name="Pecaljka" type="Node3D"]
 script = ExtResource("1_tsirx")
@@ -25,6 +70,11 @@ shape = SubResource("BoxShape3D_rwwrr")
 
 [node name="udica" parent="Mamac" instance=ExtResource("2_17vwi")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.218414, -0.962677)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8gf36")
+}
 
 [connection signal="body_entered" from="Mamac" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Mamac" to="." method="_on_area_3d_body_exited"]

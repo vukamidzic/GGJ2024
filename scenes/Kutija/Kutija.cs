@@ -20,8 +20,11 @@ public partial class Kutija : Area3D
         if(body.GetType() == typeof(Player))
         {
             GD.Print(body);
-            ((Player)body).canOpen = true;
-            ((Player)body).usableObject = this;
+            if(((Player)body).canShoot == false)
+            {
+                ((Player)body).canOpen = true;
+                ((Player)body).usableObject = this;
+            }
         }
     }
 

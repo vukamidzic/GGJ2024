@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvgy0makobk2t"]
+[gd_scene load_steps=13 format=3 uid="uid://dvgy0makobk2t"]
 
 [ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
 [ext_resource type="PackedScene" uid="uid://b8vgrxc4juimf" path="res://scenes/Fishes/StandardFish/StandardFish.tscn" id="3_vh0j7"]
 [ext_resource type="PackedScene" uid="uid://bdeow1atdakia" path="res://scenes/Brodic/Brodic.tscn" id="4_6sfvn"]
 [ext_resource type="PackedScene" uid="uid://dj6ytgsax6hed" path="res://scenes/Kutija/Kutija.tscn" id="5_7dfy2"]
+[ext_resource type="PackedScene" uid="uid://brwr1875svqx8" path="res://scenes/Fishes/GoldenFish/GoldenFish.tscn" id="6_r8pvq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rn2mp"]
 sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
@@ -68,3 +69,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
 
 [node name="Kutija" parent="." instance=ExtResource("5_7dfy2")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0.43, -3.31008)
+
+[node name="GoldenFish" parent="." instance=ExtResource("6_r8pvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 1)

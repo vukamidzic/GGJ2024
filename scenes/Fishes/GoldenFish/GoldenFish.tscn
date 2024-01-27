@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://brwr1875svqx8"]
+
+[ext_resource type="Script" path="res://scenes/Fishes/GoldenFish/GoldenFish.cs" id="1_ov6fl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gmadg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_375ol"]
+
+[node name="GoldenFish" type="CharacterBody3D"]
+script = ExtResource("1_ov6fl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gmadg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_375ol")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.72549, 0.47451, 0, 1)
+light_energy = 16.0
+omni_range = 1.905

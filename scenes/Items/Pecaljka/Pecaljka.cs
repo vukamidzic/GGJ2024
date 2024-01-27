@@ -10,11 +10,14 @@ public partial class Pecaljka : Item
     STATE state;
     Area3D mamac;
     StandardFish standardFish;
+    GoldenFish goldenFish;
+    public AnimationPlayer animPlayer;
     int minus;
     public override void _Ready()
     {
         state = STATE.FREE;
         mamac = GetNode<Area3D>("Mamac");
+        animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     public override void _Input(InputEvent @event)
@@ -42,6 +45,8 @@ public partial class Pecaljka : Item
                 minus = -1;
             if(standardFish != null)
                 standardFish.destroy();
+            if(goldenFish != null)
+                goldenFish.destroy(player);
             state = STATE.FREE;
             player.state = Player.STATE.WALK;
             mamac.Position = new Vector3(0.0f, 0.0f, -1.0f);
@@ -66,6 +71,11 @@ public partial class Pecaljka : Item
             standardFish = (StandardFish)body;
             standardFish.lightOn();
         }
+        else if(body.GetType() == typeof(GoldenFish))
+        {
+            goldenFish = (GoldenFish)body;
+            goldenFish.lightOn();
+        }
     }
 
     public void _on_area_3d_body_exited(CharacterBody3D body)
@@ -74,6 +84,11 @@ public partial class Pecaljka : Item
         {
             standardFish.lightOff();
             standardFish = null;
+        }
+        else if(body.GetType() == typeof(GoldenFish))
+        {
+            goldenFish = (GoldenFish)body;
+            goldenFish.lightOn();
         }
     }
 }
