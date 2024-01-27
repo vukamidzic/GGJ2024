@@ -121,7 +121,9 @@ public partial class Player : CharacterBody3D
 
 	public void fail()
 	{
-		pecaljka.animPlayer.Play("golden");
+		if(item.GetType() == typeof(Pecaljka)) pecaljka.animPlayer.Play("golden");
+		if(item.GetType() == typeof(Gun)) gun.animPlayer2.Play("golden");
+		if(item.GetType() == typeof(Grenade)) grenade.animPlayer.Play("golden");
 		canShoot = false;
 	}
 

@@ -5,7 +5,8 @@ public partial class Grenade : Item
 {
     Area3D damageArea;
     StandardFish standardFish;
-    AnimationPlayer animPlayer;
+    GoldenFish goldenFish;
+    public AnimationPlayer animPlayer;
     Vector3 oldPos;
     MeshInstance3D grenadeMesh;
     MeshInstance3D viewmodelMesh;
@@ -51,6 +52,11 @@ public partial class Grenade : Item
         {
             StandardFish standardFish = (StandardFish)body;
             standardFish.destroy();
+        }
+        if(body.GetType() == typeof(GoldenFish))
+        {
+            goldenFish = (GoldenFish)body;
+            goldenFish.destroy(playerInstance);
         }
     }
 
