@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rwi2fxnbsl4r"]
+
+[ext_resource type="PackedScene" uid="uid://bsf6s0f7i70ia" path="res://models/Fish/riba_anim.glb" id="1_dmeyy"]
+
+[node name="riba_anim" instance=ExtResource("1_dmeyy")]
+
+[node name="root" parent="." index="0"]
+transform = Transform3D(0.259464, -0.00120709, 0.18088, 0.180884, 0.00175321, -0.259458, -1.24317e-05, 0.316285, 0.00212853, 0, 0.374384, 0.380394)

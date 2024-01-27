@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6grglaxkuwsa"]
+
+[ext_resource type="PackedScene" uid="uid://blvsi61p7pjkr" path="res://models/Pecaljka/pecac_anim.glb" id="1_3171e"]
+
+[node name="pecac_anim" instance=ExtResource("1_3171e")]
+
+[node name="Circle" parent="Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Cylinder" parent="Armature/Skeleton3D" index="1"]
+layers = 2
