@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtyoxohsaysdv"]
+
+[ext_resource type="Script" path="res://scenes/Items/Pecaljka/Pecaljka.cs" id="1_tsirx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5rdrv"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cf18t"]
+
+[node name="Pecaljka" type="Node3D"]
+script = ExtResource("1_tsirx")
+
+[node name="Pecaljka" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.330666, 0, 0, 0, 7.14574, 0, 0, 0, 0.238027, 0, 0, 0)
+mesh = SubResource("BoxMesh_5rdrv")
+
+[node name="Mamac" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.357957, 0, 0, 0, 0.444817, 0, 0, 0, 0.362313, 0, 0, -1)
+mesh = SubResource("BoxMesh_cf18t")

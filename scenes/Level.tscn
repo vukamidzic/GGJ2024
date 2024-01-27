@@ -34,13 +34,13 @@ size = Vector2(100, 100)
 
 [node name="Level" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m7f0s")
+
 [node name="Player" parent="." instance=ExtResource("1_577qd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985143, 0)
 speed = 5.0
 mouseSens = 0.05
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_m7f0s")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.477693, 3.64965, 0)
@@ -50,3 +50,8 @@ omni_range = 38.5443
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_1e2to")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 7)
+use_collision = true
+size = Vector3(1, 7, 27)
