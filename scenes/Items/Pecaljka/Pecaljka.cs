@@ -8,12 +8,12 @@ public partial class Pecaljka : Item
         FREE
     }
     STATE state;
-
-    MeshInstance3D mamac;
+    Area3D mamac;
+    StandardFish standardFish;
     public override void _Ready()
     {
         state = STATE.FREE;
-        mamac = GetNode<MeshInstance3D>("Mamac");
+        mamac = GetNode<Area3D>("Mamac");
     }
 
     public override void _Input(InputEvent @event)
@@ -29,25 +29,40 @@ public partial class Pecaljka : Item
 
     public void moveMamac(float mouseMoveX, float mouseMoveY)
     {
-        mamac.Position += new Vector3(mouseMoveX*0.05f, 0.0f, mouseMoveY*0.05f);
+        mamac.GlobalPosition += new Vector3(mouseMoveX*0.05f, 0.0f, mouseMoveY*0.05f);
     }
     public override void shoot(Player player)
     {
         if(state == STATE.CAPTURED)
         {
+            if(standardFish != null)
+                standardFish.destroy();
             state = STATE.FREE;
             player.state = Player.STATE.WALK;
             mamac.Position = new Vector3(0.0f, 0.0f, -1.0f);
         }
         else if(state == STATE.FREE)
         {
-            state = STATE.CAPTURED;
-            player.state = Player.STATE.FISH;
-            player.raycast.ForceRaycastUpdate();
             if(player.raycast.IsColliding())
-            {
-                mamac.GlobalPosition = player.raycast.GetCollisionPoint();
+            {  
+                state = STATE.CAPTURED;
+                player.state = Player.STATE.FISH;
+                player.raycast.ForceRaycastUpdate();
+                mamac.GlobalPosition = new Vector3(player.raycast.GetCollisionPoint().X, 1.0f, player.raycast.GetCollisionPoint().Z);
             }
         }
+    }
+
+    public void _on_area_3d_body_entered(CharacterBody3D body)
+    {
+        GD.Print("uslo");
+        if(body.GetType() == typeof(StandardFish))
+            standardFish = (StandardFish)body;
+    }
+
+    public void _on_area_3d_body_exited(CharacterBody3D body)
+    {
+        if(body.GetType() == typeof(StandardFish))
+            standardFish = null;
     }
 }

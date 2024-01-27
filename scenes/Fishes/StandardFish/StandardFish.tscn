@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8vgrxc4juimf"]
+
+[ext_resource type="Script" path="res://scenes/Fishes/StandardFish/StandardFish.cs" id="1_dbd1x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4824"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5opl7"]
+
+[node name="StandardFish" type="CharacterBody3D"]
+script = ExtResource("1_dbd1x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_s4824")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5opl7")
