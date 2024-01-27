@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8efb37s6hpkg"]
+
+[ext_resource type="PackedScene" uid="uid://b3pbkaurwu66f" path="res://models/Brod/brodic.glb" id="1_s452y"]
+
+[node name="brodic" instance=ExtResource("1_s452y")]
