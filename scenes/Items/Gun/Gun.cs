@@ -7,9 +7,12 @@ public partial class Gun : Item
     float swayThreshold;
     AnimationPlayer animPlayer;
     float mouseMove;
+    StandardFish standardFish;
+    Node3D tracer;
 
     public override void _Ready()
     {
+        tracer = GetNode<Node3D>("Tracer");
         animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
@@ -41,6 +44,17 @@ public partial class Gun : Item
 
     public override void shoot(Player player)
     {
+        player.raycast.ForceRaycastUpdate();
+        // GD.Print(player.raycast.GetCollisionPoint());
+        // tracer.LookAt(player.raycast.GetCollisionPoint(), Vector3.Forward);
+        if(player.raycast.IsColliding())
+        { 
+            if(player.raycast.GetCollider().GetType() == typeof(StandardFish))
+            {
+                standardFish = (StandardFish)player.raycast.GetCollider();
+                standardFish.destroy();
+            }
+        }
         animPlayer.Stop();
         animPlayer.Play("shoot");
     }

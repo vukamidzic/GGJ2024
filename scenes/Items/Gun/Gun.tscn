@@ -11,7 +11,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BulletTrail:visible")
+tracks/0/path = NodePath("Tracer/BulletTrail:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -59,13 +59,20 @@ transform = Transform3D(-1, 1.26759e-06, 2.19553e-06, 0, 0.866025, -0.5, -2.5351
 
 [node name="BulletMuzzle" type="Sprite3D" parent="Gun"]
 transform = Transform3D(9.55343e-16, 2.18557e-08, 0.5, 0.433013, 0.25, -1.09278e-08, -0.25, 0.433013, -1.89276e-08, 0.909143, 4.20769, 3.28793)
+visible = false
+layers = 2
 texture = ExtResource("3_f166h")
-
-[node name="BulletTrail" type="Sprite3D" parent="."]
-transform = Transform3D(-0.406122, 0, 0.99863, 0, 1, 0, -7.74928, 0, -0.052336, -1.38878, 0, -30)
-texture = ExtResource("2_8638m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_u8skp")
 }
+
+[node name="Tracer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 1.13687e-13, 0, 1, 0, -1.13687e-13, 0, 1, 0, -0.0519954, -4.38865)
+
+[node name="BulletTrail" type="Sprite3D" parent="Tracer"]
+transform = Transform3D(-6.78399e-07, 0, 2, 0, 2, 0, -15.52, 0, -8.74228e-08, 0, 0, -50)
+visible = false
+layers = 2
+texture = ExtResource("2_8638m")

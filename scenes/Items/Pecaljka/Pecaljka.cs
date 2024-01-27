@@ -48,11 +48,11 @@ public partial class Pecaljka : Item
         }
         else if(state == STATE.FREE)
         {
+            player.raycast.ForceRaycastUpdate();
             if(player.raycast.IsColliding())
             {  
                 state = STATE.CAPTURED;
                 player.state = Player.STATE.FISH;
-                player.raycast.ForceRaycastUpdate();
                 mamac.GlobalPosition = new Vector3(player.raycast.GetCollisionPoint().X, 1.0f, player.raycast.GetCollisionPoint().Z);
             }
         }

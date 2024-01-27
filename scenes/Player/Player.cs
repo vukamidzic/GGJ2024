@@ -19,6 +19,7 @@ public partial class Player : CharacterBody3D
 	public RayCast3D raycast;
     public Gun gun;
 	public Pecaljka pecaljka;
+	public Grenade grenade;
 	public Item item;
 	public bool canOpen;
 	public int levelCounter;
@@ -31,12 +32,13 @@ public partial class Player : CharacterBody3D
 		viewmodelCamera = camera.GetNode<SubViewportContainer>("SubViewportContainer").GetNode<SubViewport>("SubViewport").GetNode<Camera3D>("ViewmodelCamera");
         pecaljka = camera.GetNode<Pecaljka>("Pecaljka");
 		gun = camera.GetNode<Gun>("Gun");
+		grenade = camera.GetNode<Grenade>("Grenade");
 		raycast = camera.GetNode<RayCast3D>("RayCast3D");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		item = pecaljka;
 		canOpen = false;
 		levelCounter = 0;
-		items = new Item[2]{pecaljka, gun};
+		items = new Item[3]{pecaljka, gun, grenade};
 	}
 
     public override void _Input(InputEvent @event)
