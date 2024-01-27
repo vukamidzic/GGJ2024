@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvgy0makobk2t"]
+[gd_scene load_steps=10 format=3 uid="uid://dvgy0makobk2t"]
 
 [ext_resource type="PackedScene" uid="uid://cgtlhc7u4ls4n" path="res://scenes/Player/Player.tscn" id="1_577qd"]
 [ext_resource type="Shader" path="res://shaders/zelda.gdshader" id="1_o0v2t"]
+[ext_resource type="PackedScene" uid="uid://b8vgrxc4juimf" path="res://scenes/Fishes/StandardFish/StandardFish.tscn" id="3_vh0j7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rn2mp"]
 sky_top_color = Color(0.615686, 0.388235, 0.172549, 1)
@@ -32,6 +33,9 @@ shader_parameter/wave_speed = 1.5
 material = SubResource("ShaderMaterial_sny0m")
 size = Vector2(100, 100)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ces08"]
+size = Vector3(50, 1, 50)
+
 [node name="Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -48,10 +52,16 @@ light_color = Color(1, 0.0588235, 1, 1)
 light_energy = 1.53
 omni_range = 38.5443
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_1e2to")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 7)
-use_collision = true
-size = Vector3(1, 7, 27)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_1e2to")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+shape = SubResource("BoxShape3D_ces08")
+
+[node name="StandardFish" parent="." instance=ExtResource("3_vh0j7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
